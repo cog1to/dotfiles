@@ -1,0 +1,90 @@
+# Name: Simple
+
+# Menu settings
+menu.title.bg: Flat Solid
+menu.title.bg.color: #2f343f
+menu.title.text.color: #ffffff
+menu.title.text.justify: Left
+
+menu.items.bg: Flat Solid
+menu.items.bg.color: #2f343f
+menu.items.text.color: #ffffff
+menu.items.disabled.text.color: #ffffff
+
+menu.items.active.bg: Flat Vertical
+menu.items.active.bg.color: #ffffff
+menu.items.active.text.color: #000000
+
+
+# Window settings (focused)
+window.active.button.unpressed.bg: Flat Vertical
+window.active.button.unpressed.bg.color: #2f343f
+window.active.button.unpressed.image.color: #ffffff
+
+window.active.button.pressed.bg: Flat Vertical
+window.active.button.pressed.bg.color: #2f343f
+window.active.button.pressed.image.color: #ffffff
+
+window.active.button.disabled.bg: Flat Vertical
+window.active.button.disabled.bg.color: #2f343f
+window.active.button.disabled.image.color: #999999
+
+window.active.button.toggled.bg: Flat Vertical
+window.active.button.toggled.bg.color: #2f343f
+window.active.button.toggled.image.color: #000000
+
+
+# Window settings (unfocused)
+window.*.title.bg: flat solid
+window.*.title.bg.color: #2f343f
+
+window.*.label.bg: Parentrelative
+window.*.label.text.color: #ffffff
+
+window.*.handle.bg: Raised Vertical
+window.*.handle.bg.color: #000000
+
+window.*.grip.bg: Raised Vertical
+window.*.grip.bg.color: #000000
+
+window.inactive.button.*.bg: Flat Vertical
+window.inactive.button.*.bg.color: #2f343f
+window.inactive.button.*.image.color: #2f343f
+
+#window.inactive.button.pressed.bg: Flat Vertical
+#window.inactive.button.pressed.bg.color: #2f343f
+#window.inactive.button.pressed.image.color: #000000
+
+#window.inactive.button.disabled.bg: Flat Vertical
+#window.inactive.button.disabled.bg.color: #2f343f
+#window.inactive.button.disabled.image.color: #000000
+
+#window.inactive.button.toggled.bg: Flat Vertical
+#window.inactive.button.toggled.bg.color: #000000
+#window.inactive.button.toggled.image.color: #000000
+
+
+### Everything else
+border.width: 2
+padding.width: 8
+window.handle.width: 0
+window.client.padding.width: 0
+border.color: #2f343f
+menu.overlap: 0
+
+window.*.handle.color: #2f343f
+window.*.handle.bg: flat solid
+window.*.handle.bg.color: #2f343f
+window.*.handle.bg.border.color: #2f343f
+
+window.*.grip.bg: flat solid
+window.*.grip.color: #2f343f
+window.*.grip.bg.color: #2f343f
+window.*.grip.bg.border.color: #2f343f
+
+
+### Fonts
+window.active.label.text.font:shadow=y:shadowtint=0:shadowoffset=0
+window.inactive.label.text.font:shadow=y:shadowtint=0:shadowoffset=0
+menu.items.font:
+menu.title.text.font:shadow=y:shadowtint=0

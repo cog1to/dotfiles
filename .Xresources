@@ -1,0 +1,14 @@
+Xft.dpi:	93
+Xft.antialias:	true
+Xft.rgba:	rgb
+Xft.hinting:	true
+Xft.hintstyle:	hintfull
+
+*background: #2f343f
+*foreground: #BCB89C
+*fadeColor: #002b36
+*cursorColor: #E3DDB3
+*pointerColorBackground: #E3DDB3
+*pointerColorForeground: #CFC584
+*color4: #268bd2
+*color12: #839496

@@ -1,0 +1,39 @@
+# ~/.xbindkeysrc
+# Key bindings for functional keys.
+
+# Increase volume
+"pactl set-sink-volume @DEFAULT_SINK@ +5000"
+    XF86AudioRaiseVolume
+
+# Decrease volume
+"pactl set-sink-volume @DEFAULT_SINK@ -5000"
+    XF86AudioLowerVolume
+
+# Mute volume
+"pactl set-sink-mute @DEFAULT_SINK@ toggle"
+    XF86AudioMute
+
+# Next song
+"mpc next"
+    XF86AudioNext
+
+# Previous song
+"mpc prev"
+    XF86AudioPrev
+
+# Start playing
+"$TERMINAL -e ncmpcpp"
+    XF86Tools
+
+# Stop
+"mpc stop"
+    XF86AudioStop
+
+# Play/pause
+"mpc toggle"
+    XF86AudioPlay
+
+# Launch terminal
+"$TERMINAL"
+    Mod4+Return
+

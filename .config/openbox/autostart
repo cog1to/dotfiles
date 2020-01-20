@@ -1,0 +1,31 @@
+#
+# These things are run when an Openbox X Session is started.
+# You may place a similar script in $HOME/.config/openbox/autostart
+# to run user-specific things.
+#
+
+# If you want to use GNOME config tools...
+#
+#if test -x /usr/lib/openbox/gnome-settings-daemon >/dev/null; then
+#  /usr/lib/openbox/gnome-settings-daemon &
+#elif which gnome-settings-daemon >/dev/null 2>&1; then
+#  gnome-settings-daemon &
+#fi
+
+# If you want to use XFCE config tools...
+#
+#xfce-mcs-manager &
+#(sleep 2 && xcompmgr -c -t-4 -l-4 -r4.0 -o.4) &
+
+/usr/lib/notification-daemon-1.0/notification-daemon &
+#hsetroot -solid "#5b6782"
+nitrogen --restore &
+redshift &
+xbindkeys &
+(sleep 2 && compton) &
+(sleep 2 && conky)
+(sleep 2 && pasystray) &
+(sleep 5 && nm-applet) &
+#(sleep 5 && sudo /usr/bin/systemctl start NetworkManager.service) &
+
+

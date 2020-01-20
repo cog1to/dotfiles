@@ -1,0 +1,10 @@
+[options]
+font = Meslo LG S for Powerline 11
+
+[colors]
+background = #2f343f
+foreground = #bcb89c
+color4 = #268bd2
+color12 = #839496
+
+
