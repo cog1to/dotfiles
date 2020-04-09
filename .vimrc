@@ -20,13 +20,12 @@ Plug 'whatyouhide/vim-gotham'
 call plug#end()
 
 " Tabulation.
-set expandtab
-set shiftwidth=2
-set smarttab
-set autoindent
-set smartindent
-set tabstop=2
-set softtabstop=0
+set tabstop=2 softtabstop=0 expandtab shiftwidth=2
+
+" Specific tab sizes
+autocmd Filetype html setlocal ts=2 sw=2 expandtab
+autocmd Filetype js setlocal ts=2 sw=2 expandtab
+autocmd Filetype c setlocal ts=2 sw=2 expandtab
 
 " Auto-complete parantheses.
 :inoremap ( ()<Esc>i
@@ -77,9 +76,9 @@ set t_8b=[48;2;%lu;%lu;%lum
 colorscheme OceanicNext
 set termguicolors
 
-" Specific tab sizes
-autocmd FileType javascript setlocal shiftwidth=2 tabstop=2
-autocmd FileType c setlocal shiftwidth=2 tabstop=2
-
 " Kitty background bug fix
 let &t_ut=''
+
+" ST delete button fix
+:set t_kD=
+:set t_kb=

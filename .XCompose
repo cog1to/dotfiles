@@ -1,0 +1,49 @@
+# Custom compose keys.
+#
+# Each line starts with <Multi_key> tag, which is your compose key,
+# followed by a key combination that will produce the key on the right
+# side of the colon symbol.
+
+include "%L"
+
+# Greek alphabet
+<Multi_key> <g> <a> : "α" U03B1 # GREEK ALPHA SMALL
+<Multi_key> <g> <b> : "β" U03B2 # GREEK BETA SMALL
+<Multi_key> <g> <g> : "γ" U03B3 # GREEK GAMMA SMALL
+<Multi_key> <g> <d> : "δ" U03B4 # GREEK DELTA SMALL
+<Multi_key> <g> <e> : "ε" U03B5 # GREEK EPSILON SMALL
+<Multi_key> <g> <z> : "ζ" U03B6 # GREEK ZETA SMALL
+<Multi_key> <g> <E> : "η" U03B7 # GREEK ETA SMALL
+<Multi_key> <g> <h> : "θ" U03B8 # GREEK THETA SMALL
+<Multi_key> <g> <i> : "ι" U03B9 # GREEK IOTA SMALL
+<Multi_key> <g> <j> : "κ" U03BA # GREEK KAPA SMALL
+<Multi_key> <g> <k> : "λ" U03BB # GREEK LAMDA SMALL
+<Multi_key> <g> <l> : "μ" U03BC # GREEK MU SMALL
+<Multi_key> <g> <m> : "ν" U03BD # GREEK NU SMALL
+<Multi_key> <g> <x> : "ξ" U03BE # GREEK XI SMALL
+<Multi_key> <g> <o> : "ο" U03BF # GREEK OMICRON SMALL
+<Multi_key> <g> <3> : "π" U03C0 # GREEK PI SMALL
+<Multi_key> <g> <r> : "ρ" U03C1 # GREEK RHO SMALL
+<Multi_key> <g> <S> : "ς" U03C2 # GREEK FINAL SIGMA SMALL
+<Multi_key> <g> <s> : "σ" U03C3 # GREEK SIGMA SMALL
+<Multi_key> <g> <t> : "τ" U03C4 # GREEK TAU SMALL
+<Multi_key> <g> <u> : "υ" U03C5 # GREEK UPSILON SMALL
+<Multi_key> <g> <p> : "φ" U03C6 # GREEK PHI SMALL
+<Multi_key> <g> <X> : "χ" U03C7 # GREEK CHI SMALL
+<Multi_key> <g> <P> : "ψ" U03C8 # GREEK PSI SMALL
+<Multi_key> <g> <O> : "ω" U03C9 # GREEK OMEGA SMALL
+
+# Emojis
+<Multi_key> <e> <colon> <parenright> <1> : "😀" U1F600 # GRINNING FACE
+<Multi_key> <e> <colon> <parenright> <2> : "😁" U1F601 # GRINNING FACE WITH SMILING EYES
+<Multi_key> <e> <colon> <parenright> <3> : "😂" U1F602 # FACE WITH TEARS OF JOY
+<Multi_key> <e> <colon> <parenright> <4> : "😃" U1F603 # SMILING FACE WITH OPEN MOUTH
+<Multi_key> <e> <colon> <parenright> <5> : "😄" U1F604 # SMILING FACE WITH OPEN MOUTH AND SMILING EYES
+<Multi_key> <e> <colon> <parenright> <6> : "😅" U1F605 # SMILING FACE WITH OPEN MOUTH AND COLD SWEAT
+<Multi_key> <e> <colon> <parenright> <7> : "😆" U1F606 # SMILING FACE WITH OPEN MOUTH AND TIGHTLY-CLOSED EYES 
+<Multi_key> <e> <colon> <parenright> <U> : "🙃" U1F643 # UPSIDE-DOWN FACE
+<Multi_key> <e> <colon> <parenright> <C> : "😊" U1F60A # SMILING FACE WITH SMILING EYES
+<Multi_key> <e> <colon> <parenright> <H> : "😇" U1F607 # SMILING FACE WITH HALO
+<Multi_key> <e> <colon> <parenright> <D> : "😈" U1F608 # SMILING FACE WITH HORNS
+<Multi_key> <e> <colon> <parenright> <W> : "😉" U1F609 # WINKING FACE
+<Multi_key> <e> <colon> <parenright> <F> : "😋" U1F60B # FACE SAVOURING DELICIOUS FOOD

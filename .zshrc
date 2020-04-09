@@ -43,7 +43,8 @@ preexec() {
 PROMPT='[%B%F{green}$USER@%m %c%b%f]${git_prompt} '
 
 # Home row bindings: common
-bindkey "\033[3~" delete-char
+bindkey "\033[P" delete-char
+bindkey "[3~" delete-char
 
 # Home row bindings: Pure zsh
 bindkey "\033[H" beginning-of-line
