@@ -1,3 +1,32 @@
+### Colors
+
+# Default foreground and background
+color normal default default
+# Header foreground and background
+color header default default ".*"
+color header brightwhite default "^(From|Subject):"
+# Index
+color index_author bold default default ".*"
+# Quotes
+color quoted brightblue default
+color quoted1 bold blue default
+color quoted2 bold cyan default
+color quoted3 bold magenta default
+# URLs
+color body red default "[a-zA-Z0-9\.]+(@[a-zA-Z0-9\.]+)?://[[:alnum:]\.\/\-]+"
+
+### Macros
+
+# Opening URLs in a browser. Requires urlview utility.
+macro pager U "<enter-command>set pipe_decode = yes<enter><pipe-message>urlview<enter><enter-command>set pipe_decode = no<enter>" "view URLs"
+
+### Gmail config
+# 1. Replace <username> and <realname> with your gmail account info
+# 2. Fill in imap_pass and smtp_pass values. You will probably need to register
+#     an app inside Google's security settings and get a special access 
+#     key/pass value.
+# 3. Configure folder structure in "mailboxes"
+
 set imap_user="<username>@gmail.com"
 set imap_pass=""
 
@@ -15,7 +44,7 @@ set sort=reverse-date   # default sorting by date
 # in relation to other threads, and how the branches of the thread trees are sorted.
 set sort_aux=last-date-received
 # Index page format. Default "%4C %Z %{%b %d} %-15.15L (%?l?%4l&%4c?) %s"
-set index_format="%4C %Z %{%b %d %R} %-15.15L (%?l?%4l&%4c?) %s"
+set index_format="%4C %Z %{%b %d %R} | %-15.15L | %s"
 
 set sidebar_visible
 set sidebar_format="%B%?F? [%F]?%* %?N?%N/?%S"
