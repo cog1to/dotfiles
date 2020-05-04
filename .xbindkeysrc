@@ -35,5 +35,8 @@
 
 # Launch terminal
 "$TERMINAL"
-    Mod4+Return
+    Alt+Return
 
+# Launch rofi
+"rofi -show run -theme aint -lines 3"
+    Alt+F2

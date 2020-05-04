@@ -6,15 +6,16 @@ color normal default default
 color header default default ".*"
 color header brightwhite default "^(From|Subject):"
 # Index
-color index color117 default "~N"                    # unread messages (new)
-color index color117 default "~O"                    # unread messages (old)
+color index color117 default "~N"                  # new messages
+color index color117 default "~O"                  # new messages
+color index color240 default "~D"                  # deleted message
 # Quotes
 color quoted brightblue default
 color quoted1 bold blue default
 color quoted2 bold cyan default
 color quoted3 bold magenta default
 # URLs
-color body red default "[a-zA-Z0-9\.]+(@[a-zA-Z0-9\.\:]+)?://[[:alnum:]\.\/\-\?\&\=]+"
+color body red default "[a-zA-Z0-9\.]+(@[a-zA-Z0-9\.\:]+)?://[-[:alnum:]\.\/\?\&\=\_]+"
 
 ### Macros
 

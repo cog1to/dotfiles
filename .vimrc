@@ -17,6 +17,9 @@ Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 " Another color-scheme.
 Plug 'whatyouhide/vim-gotham'
 
+" Gruvbox
+Plug 'morhetz/gruvbox'
+
 call plug#end()
 
 " Tabulation.
@@ -26,6 +29,9 @@ set tabstop=2 softtabstop=0 expandtab shiftwidth=2
 autocmd Filetype html setlocal ts=2 sw=2 expandtab
 autocmd Filetype js setlocal ts=2 sw=2 expandtab
 autocmd Filetype c setlocal ts=2 sw=2 expandtab
+
+" Mail formatting - disable auto-wrap
+autocmd Filetype mail setlocal tw=0
 
 " Auto-complete parantheses.
 :inoremap ( ()<Esc>i
@@ -74,6 +80,7 @@ syntax enable
 set t_8f=[38;2;%lu;%lu;%lum
 set t_8b=[48;2;%lu;%lu;%lum
 colorscheme OceanicNext
+set background=dark
 set termguicolors
 
 " Kitty background bug fix
