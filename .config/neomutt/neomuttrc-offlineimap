@@ -19,23 +19,22 @@ color body red default "[a-zA-Z0-9\.]+(@[a-zA-Z0-9\.\:]+)?://[-[:alnum:]\.\/\?\&
 
 ### Macros
 
-# Opening URLs in a browser. Requires urlview.
+# Opening URLs in a browser
 macro pager U "<enter-command>set pipe_decode = yes<enter><pipe-message>urlview<enter><enter-command>set pipe_decode = no<enter>" "view URLs"
 
 ### Gmail config
-# 1. Replace <username> and <realname> with your gmail account info
-# 2. Fill in imap_pass and smtp_pass values. You will probably need to register
-# an app inside Google's security settings and get a special access
-# key/pass value.
-# 3. Configure folder structure in "mailboxes"
-
-set imap_user="<username>@gmail.com"
-set imap_pass=""
-
-set folder=imaps://imap.gmail.com/
+set mbox_type=Maildir
+set folder=$HOME/mail/Gmail
 set spoolfile=+INBOX
-set record="+[Gmail]/Sent Mail"
-set postponed="+[Gmail]/Drafts"
+set record="+[Gmail].Sent Mail"
+set postponed="+[Gmail].Drafts"
+
+# You can use any gmail imap mailboxes here.
+mailboxes =INBOX \
+=[Gmail].Sent\ Mail \
+=[Gmail].Drafts \
+=[Gmail].Spam \
+=[Gmail].Trash
 
 # https://www.neomutt.org/guide/reference search sleep_time for additional info
 set sleep_time=0 # be faster
@@ -51,13 +50,6 @@ set index_format="%4C %Z %{%b %d %R} | %-15.15L | %s"
 set sidebar_visible
 set sidebar_format="%B%?F? [%F]?%* %?N?%N/?%S"
 set mail_check_stats
-
-# You can use any gmail imap mailboxes here.
-mailboxes =INBOX \
-=[Gmail]/Sent\ Mail \
-=[Gmail]/Drafts \
-=[Gmail]/Spam \
-=[Gmail]/Trash
 
 # Vim like binds
 bind attach,index,pager \CD next-page
