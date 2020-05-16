@@ -9,6 +9,7 @@ color header brightwhite default "^(From|Subject):"
 color index color117 default "~N"                  # new messages
 color index color117 default "~O"                  # new messages
 color index color240 default "~D"                  # deleted message
+color index_flags color5 default "~T"              # tagged message
 # Quotes
 color quoted brightblue default
 color quoted1 bold blue default
@@ -21,6 +22,12 @@ color body red default "[a-zA-Z0-9\.]+(@[a-zA-Z0-9\.\:]+)?://[-[:alnum:]\.\/\?\&
 
 # Opening URLs in a browser. Requires urlview.
 macro pager U "<enter-command>set pipe_decode = yes<enter><pipe-message>urlview<enter><enter-command>set pipe_decode = no<enter>" "view URLs"
+
+# Saving messages to Receipts.
+macro index \Cr "<tag-prefix-cond><tag-prefix><end-cond><save-message>+Receipts<enter>" "Move to receipts"
+
+# Force refresh offlineimap.
+macro index \Cw "<enter-command>set wait_key = no<enter><shell-escape>~/.config/scripts/offlineimap.sh<enter><enter-command>set wait_key = yes<enter>" "Force mail update"
 
 ### Gmail config
 # 1. Replace <username> and <realname> with your gmail account info
