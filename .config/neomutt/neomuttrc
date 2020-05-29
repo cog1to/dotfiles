@@ -48,10 +48,10 @@ set postponed="+[Gmail]/Drafts"
 set sleep_time=0 # be faster
 set beep=no # no beep sound
 set editor="vim"
-set sort=reverse-date   # default sorting by date
+set sort=threads   # default sorting by date
 # When sorting by threads, this variable controls how threads are sorted
 # in relation to other threads, and how the branches of the thread trees are sorted.
-set sort_aux=last-date-received
+set sort_aux=reverse-date
 # Index page format. Default "%4C %Z %{%b %d} %-15.15L (%?l?%4l&%4c?) %s"
 set index_format="%4C %Z %{%b %d %R} | %-15.15L | %s"
 
