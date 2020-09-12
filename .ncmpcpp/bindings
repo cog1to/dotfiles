@@ -1,17 +1,20 @@
 def_key "d"
   delete_playlist_items
-#
+
 def_key "d"
   delete_browser_items
-#
+
 def_key "d"
   delete_stored_playlist
 
 def_key "delete"
   delete_playlist_items
-#
+
 def_key "delete"
   delete_browser_items
-#
+
 def_key "delete"
   delete_stored_playlist
+
+def_key "backspace"
+  delete_playlist_items

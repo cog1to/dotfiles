@@ -1,1 +1,1 @@
-*/3 * * * * ~/.config/scripts/offlineimap.sh
+*/3 * * * * ~/.local/bin/offlineimap.sh
