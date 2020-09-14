@@ -18,14 +18,13 @@
 #(sleep 2 && xcompmgr -c -t-4 -l-4 -r4.0 -o.4) &
 
 /usr/lib/notification-daemon-1.0/notification-daemon &
-#hsetroot -solid "#5b6782"
 nitrogen --restore &
 redshift &
 xbindkeys &
-(sleep 2 && compton) &
-(sleep 2 && conky)
+stream-notifier cog1to
+(sleep 2 && picom -b --config ~/.config/picom/picom.conf) &
+(sleep 2 && conky) &
 (sleep 2 && pasystray) &
 (sleep 5 && nm-applet) &
-#(sleep 5 && sudo /usr/bin/systemctl start NetworkManager.service) &
-
+#(sleep 5 && sudo /usr/bin/amdgpu-powerlevel-high) &
 
