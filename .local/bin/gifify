@@ -1,0 +1,17 @@
+#!/bin/bash
+
+# Video to GIF. Parameters:
+#   1) Original video file.
+#   2) Output GIF file name.
+#   3) Output image width. Height will be scaled proportinally keeping the aspect ratio.
+
+INPUT=$1
+OUTPUT=$2
+WIDTH=""
+
+if [ -n "$3" ]; then
+  WIDTH=",scale=$3:-1:flags=lanczos"
+fi
+
+`ffmpeg -i $INPUT -vf "fps=10$WIDTH" -c:v pam -f image2pipe - | convert -delay 10 - -layers optimize $OUTPUT`
+

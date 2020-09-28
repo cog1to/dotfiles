@@ -1,0 +1,27 @@
+#!/bin/bash
+
+# Opens a Twitch stream with given player
+# Parameter:
+#   1) Stream name (streamer's name)
+#   2) Quality (default: 480p)
+#   3) Player to feed the stream into (default: mpv --cache-secs=10)
+
+PLAYER="mpv --cache-secs=10"
+STREAM_NAME=$1
+QUALITY="480p"
+TOKEN=""
+
+if [ -n "$2" ]; then
+  QUALITY=$2
+fi
+
+if [ -n "$3" ]; then
+  PLAYER=$3
+fi
+
+if [ -n "$TWITCH_OAUTH_TOKEN" ]; then
+  TOKEN="--twitch-oauth-token=$TWITCH_OAUTH_TOKEN"
+fi
+
+streamlink -p "$PLAYER" --twitch-oauth-token=$TWITCH_OAUTH_TOKEN www.twitch.tv/$STREAM_NAME $QUALITY 1>/dev/null & disown
+
