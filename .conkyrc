@@ -69,12 +69,14 @@ ${color grey}Frequency (in GHz):$color $freq_g
 ${color grey}RAM Usage:$color $mem/$memmax - $memperc% ${membar 4}
 ${color grey}Swap Usage:$color $swap/$swapmax - $swapperc% ${swapbar 4}
 ${color grey}CPU Usage:$color $cpu% ${cpubar 4}
+${color grey}CPU Temp:$color ${execi 2 sensors | grep Tdie | cut -c 16-19}°C
 ${color grey}Processes:$color $processes  ${color grey}Running:$color $running_processes
 $hr
 ${color grey}File systems:
  /     $color${fs_used /}/${fs_size /} ${fs_bar 6 /}
  /home $color${fs_used /home}/${fs_size /home} ${fs_bar 6 /home}
+ archive $color${fs_used /home/aint/archive}/${fs_size /home/aint/archive} ${fs_bar 6 /home/aint/archive}
 $hr
 ${color grey}Networking:
-Up:$color ${upspeed wlp0s22f2u3} ${color grey} - Down:$color ${downspeed wlp0s22f2u3
+Up:$color ${upspeed wlan0} ${color grey} - Down:$color ${downspeed wlan0
 ]]
