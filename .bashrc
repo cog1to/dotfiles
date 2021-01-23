@@ -6,6 +6,8 @@
 # Color constants
 BOLD_RED="\[\033[01;31m\]"
 BOLD_GREEN="\[\033[01;32m\]"
+BOLD_YELLOW="\[\033[01;33m\]"
+RED="\[\033[0;31m\]"
 GREEN="\[\033[0;32m\]"
 CLEAR="\[\033[00m\]"
 
@@ -18,20 +20,37 @@ git_prompt() {
   # If not in git dir, abort.
   git rev-parse --git-dir &> /dev/null
 
-  git_status="$(git status 2> /dev/null)"
-  branch_pattern="^On branch ([^${IFS}]*)"
+  local git_status="$(git status 2> /dev/null)"
+  local branch_pattern="^On branch ([^${IFS}]*)"
 
   # Dirty state
-  if [[ ! ${git_status} =~ "working tree clean" && ! ${git_status} =~ "nothing added to commit" ]]; then
-    state=" ${BOLD_RED}*"
+  if [[ ${git_status} =~ "nothing added to commit but untracked files present" ]]; then
+    state="${RED}?"
+  elif [[ ! ${git_status} =~ "working tree clean" ]]; then
+    state="${RED}*"
   fi
 
   # Branch name
   if [[ ${git_status} =~ ${branch_pattern} ]]; then
-    branch=${BASH_REMATCH[1]}
+    local branch=${BASH_REMATCH[1]}
     echo " ${CLEAR}(${GREEN}${branch}${state}${CLEAR})"
   fi
 }
+
+# Git branch completion
+git_branch() {
+  # If not in git dir, abort.
+  git rev-parse --git-dir &> /dev/null
+
+  local command=${COMP_WORDS[1]}
+  if [[ ${command} == "checkout" || ${command} == "branch" ]]; then
+    # `sed` deletes leading symbols from `git branch` output
+    # so "* current_branch" becomes "current_branch"
+    local branches=`git branch --no-color | sed -e 's/[\* ] //'`
+    COMPREPLY=( $(compgen -W "${branches}" -- ${COMP_WORDS[$COMP_CWORD]}) )
+  fi
+}
+complete -F git_branch git
 
 # Prompt customization goes here.
 prompt() {
