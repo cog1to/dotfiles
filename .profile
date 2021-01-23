@@ -48,12 +48,14 @@ alias rnla='npx react-native log-android'
 alias exthd-hfs='sudo mount -t hfsplus -o force,rw,umask=000,gid=storage /dev/sdb2 ~/exthd'
 alias exthd-ntfs='sudo mount -t ntfs -o force,rw,umask=000,gid=storage /dev/sdb1 ~/exthd'
 
-# DHCPCD fix after VPN disconnect
-alias reconnect='sudo dhcpcd wlp0s22f2u3'
-
 # NVM config.
 [ -f /usr/share/nvm/init-nvm.sh ] && source /usr/share/nvm/init-nvm.sh
 
 # MPD daemon start (if no other user instance exists)
 [ ! -s ~/.config/mpd/pid ] && mpd
+
+# LS_COLORS; just having some fun with it at the moment, colors are not final
+export LS_COLORS="di=1;38;5;69:ex=38;5;208"
+# Color `ls` output by default.
+alias ls='ls --color=auto'
 

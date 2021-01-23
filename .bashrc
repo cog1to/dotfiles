@@ -4,7 +4,7 @@
 #
 
 # Color constants
-RED="\[\033[01;31m\]"
+BOLD_RED="\[\033[01;31m\]"
 BOLD_GREEN="\[\033[01;32m\]"
 GREEN="\[\033[0;32m\]"
 CLEAR="\[\033[00m\]"
@@ -23,7 +23,7 @@ git_prompt() {
 
   # Dirty state
   if [[ ! ${git_status} =~ "working tree clean" && ! ${git_status} =~ "nothing added to commit" ]]; then
-    state=" ${RED}*"
+    state=" ${BOLD_RED}*"
   fi
 
   # Branch name
@@ -39,16 +39,13 @@ prompt() {
   # The arrow in the prompt below is a unicode symbol, so in a pure console
   # environment it will display as a red square. Replace it with a simple
   # angled bracket for uniform look and feel.
-  PS1="${CLEAR}[${BOLD_GREEN}\u@\h \W${GIT_PROMPT}${CLEAR}]${RED}➤${CLEAR} "
+  PS1="${CLEAR}[${BOLD_GREEN}\u@\h \W${GIT_PROMPT}${CLEAR}]${BOLD_RED}➤${CLEAR} "
 }
 PROMPT_COMMAND=prompt
 
 # Enable VI mode
 set -o vi
 export VISUAL=vim
-
-# Color `ls` output by default.
-alias ls='ls --color=auto'
 
 # Load profile
 source ~/.profile
