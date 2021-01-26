@@ -60,7 +60,8 @@ prompt() {
   # The arrow in the prompt below is a unicode symbol, so in a pure console
   # environment it will display as a red square. Replace it with a simple
   # angled bracket for uniform look and feel.
-  PS1="${CLEAR}[${BOLD_GREEN}\u@\h \W${GIT_PROMPT}${CLEAR}]${BOLD_RED}➤${CLEAR} "
+  # PS1="${CLEAR}[${BOLD_GREEN}\u@\h \W${GIT_PROMPT}${CLEAR}]${BOLD_RED}➤${CLEAR} "
+  PS1="${BOLD_GREEN}\W${GIT_PROMPT}${CLEAR}${BOLD_RED} ➤${CLEAR} "
 }
 PROMPT_COMMAND=prompt
 
