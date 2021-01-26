@@ -15,6 +15,9 @@ CLEAR="\[\033[00m\]"
 # If not running interactively, don't do anything.
 [[ $- != *i* ]] && return
 
+# Fix for tmux not handling backspace key.
+stty erase ""
+
 # Git branch & dirty status for prompt.
 # Taken with some modifications from https://gist.github.com/matthewmccullough/47267.
 git_prompt() {
