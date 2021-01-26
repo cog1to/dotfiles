@@ -7,6 +7,7 @@
 BOLD_RED="\[\033[01;31m\]"
 BOLD_GREEN="\[\033[01;32m\]"
 BOLD_YELLOW="\[\033[01;33m\]"
+BOLD_AMBER="\[\033[38;5;208m\]"
 RED="\[\033[0;31m\]"
 GREEN="\[\033[0;32m\]"
 CLEAR="\[\033[00m\]"
@@ -15,7 +16,7 @@ CLEAR="\[\033[00m\]"
 [[ $- != *i* ]] && return
 
 # Git branch & dirty status for prompt.
-# Taken with some modifications from [matthewmccullough's gist](https://gist.github.com/matthewmccullough/47267).
+# Taken with some modifications from https://gist.github.com/matthewmccullough/47267.
 git_prompt() {
   # If not in git dir, abort.
   git rev-parse --git-dir &> /dev/null
@@ -38,7 +39,7 @@ git_prompt() {
 }
 
 # Git branch completion.
-# See [GNU manual](https://www.gnu.org/software/bash/manual/html_node/Programmable-Completion-Builtins.html)
+# See https://www.gnu.org/software/bash/manual/html_node/Programmable-Completion-Builtins.html
 # for a good explanation of different `compgen` and `complete` options.
 git_branch() {
   # If not in git dir, abort.
@@ -60,7 +61,15 @@ prompt() {
   # The arrow in the prompt below is a unicode symbol, so in a pure console
   # environment it will display as a red square. Replace it with a simple
   # angled bracket for uniform look and feel.
-  # PS1="${CLEAR}[${BOLD_GREEN}\u@\h \W${GIT_PROMPT}${CLEAR}]${BOLD_RED}➤${CLEAR} "
+  # ------------------------------------------------------------------------
+  # Quick cheatsheet for built-in aliases:
+  #   \u - username
+  #   \h - hostname up to first '.'
+  #   \W - directory name (last path component)
+  #   \t - current time
+  # Full list is at `man bash`.
+  # A good guide for customizing the prompt: 
+  #   https://tldp.org/HOWTO/Bash-Prompt-HOWTO/bash-prompt-escape-sequences.html
   PS1="${BOLD_GREEN}\W${GIT_PROMPT}${CLEAR}${BOLD_RED} ➤${CLEAR} "
 }
 PROMPT_COMMAND=prompt

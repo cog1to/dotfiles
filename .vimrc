@@ -86,6 +86,3 @@ set termguicolors
 " Kitty background bug fix
 let &t_ut=''
 
-" ST delete button fix
-:set t_kD=
-:set t_kb=
