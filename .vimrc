@@ -86,7 +86,3 @@ set termguicolors
 " Kitty background bug fix
 let &t_ut=''
 
-" ST backspace button fix
-":set t_kD=
-:set t_kb=
-
