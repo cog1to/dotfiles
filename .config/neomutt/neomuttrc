@@ -29,6 +29,9 @@ macro index \Cr "<tag-prefix-cond><tag-prefix><end-cond><save-message>+Receipts<
 # Force refresh offlineimap.
 macro index \Cw "<enter-command>set wait_key = no<enter><shell-escape>~/.config/scripts/offlineimap.sh<enter><enter-command>set wait_key = yes<enter>" "Force mail update"
 
+# See vfolders list.
+macro index c "<change-vfolder>?" "Change to vfolder overview"
+
 ### Gmail config
 # 1. Replace <username> and <realname> with your gmail account info
 # 2. Fill in imap_pass and smtp_pass values. You will probably need to register
@@ -41,7 +44,7 @@ set imap_pass=""
 
 set folder=imaps://imap.gmail.com/
 set spoolfile=+INBOX
-set record="+[Gmail]/Sent Mail"
+set record="Sent"
 set postponed="+[Gmail]/Drafts"
 
 # https://www.neomutt.org/guide/reference search sleep_time for additional info
@@ -56,8 +59,16 @@ set sort_aux=reverse-date
 set index_format="%4C %Z %{%b %d %R} | %-15.15L | %s"
 
 set sidebar_visible
-set sidebar_format="%B%?F? [%F]?%* %?N?%N/?%S"
+set sidebar_format="%D%?F? [%F]?%* %?N?%N/?%S"
 set mail_check_stats
+
+# Notmuch config
+set nm_default_url = "notmuch:///home/aint/mail"
+virtual-mailboxes "Unread" "notmuch://?query=tag:unread"
+set nm_query_type = "threads"
+set vfolder_format = "%f %6n"
+# Binding for notmuch search
+bind index \\ vfolder-from-query
 
 # You can use any gmail imap mailboxes here.
 mailboxes =INBOX \
