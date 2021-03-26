@@ -64,13 +64,13 @@ let g:netrw_altv = 1
 let g:netrw_winsize = 25
 
 " Move to the next buffer
-nmap <C-L> :bnext<CR>
+nmap <F6> :bn<CR>
 
 " Move to the previous buffer
-nmap <C-H> :bprevious<CR>
+nmap <F5> :bp<CR>
 
 " Close current buffer
-nmap <C-T> :bp <BAR> bd #<CR>
+nmap <C-t> :bp <BAR> bd #<CR>
 
 " Show all open buffers and their status
 nmap <leader>bl :ls<CR>
@@ -85,4 +85,7 @@ set termguicolors
 
 " Kitty background bug fix
 let &t_ut=''
+
+" Opening URLs.
+nmap <leader><space> yiW: !xdg-open <c-r>" &<cr>
 
