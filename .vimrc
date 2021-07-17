@@ -34,9 +34,10 @@ autocmd Filetype c setlocal ts=2 sw=2 expandtab
 autocmd Filetype mail setlocal tw=0
 
 " Auto-complete parantheses.
-:inoremap ( ()<Esc>i
-:inoremap { {}<Esc>i
-:inoremap [ []<Esc>i
+" Disabling for now. Feels like it's more pain than usability.
+":inoremap ( ()<Esc>i
+":inoremap { {}<Esc>i
+":inoremap [ []<Esc>i
 
 " Airline - use powerline fonts
 let g:airline_powerline_fonts = 1
@@ -89,3 +90,30 @@ let &t_ut=''
 " Opening URLs.
 nmap <leader><space> yiW: !xdg-open <c-r>" &<cr>
 
+nmap <leader>c :set opfunc=CommentOut<CR>g@
+nmap <C-\> :call CommentLine()<CR>
+
+function! Min(a, b)
+  if a:a < a:b
+    return a:a
+  endif
+  return a:b
+endfunction
+
+function! CommentOut(type, ...)
+  let start = line("'[")
+  let end = line("']")
+
+  let end = Min(end, line("$"))
+  while start < end
+    exe "normal" start .. "G" .. "^i// "
+    let start += 1
+  endwhile
+endfunction
+
+function! CommentLine()
+  let column = col(".")
+  let row = line(".")
+  exe "normal" "^i// "
+  call cursor(row + 1, column)
+endfunction
