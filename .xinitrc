@@ -25,7 +25,7 @@ fi
 
 # keyboard
 
-setxkbmap -model pc105 -layout us,ru -variant qwerty -option grp:caps_toggle,compose:ralt
+setxkbmap -model pc104 -layout us,ru -variant qwerty -option grp:caps_toggle,compose:menu
 
 # start some nice programs
 

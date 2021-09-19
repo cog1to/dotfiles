@@ -55,7 +55,7 @@ alias exthd-ntfs='sudo mount -t ntfs -o force,rw,umask=000,gid=storage /dev/sdb1
 [ ! -s ~/.config/mpd/pid ] && mpd
 
 # LS_COLORS; just having some fun with it at the moment, colors are not final
-export LS_COLORS="di=1;38;5;69:ex=38;5;208"
+export LS_COLORS="di=1;38;5;69:ex=38;5;208:ow=1;34;47"
 # Color `ls` output by default.
 alias ls='ls --color=auto'
 

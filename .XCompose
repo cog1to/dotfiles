@@ -33,6 +33,9 @@ include "%L"
 <Multi_key> <g> <P> : "ψ" U03C8 # GREEK PSI SMALL
 <Multi_key> <g> <O> : "ω" U03C9 # GREEK OMEGA SMALL
 
+# O/
+<Multi_key> <o> </> : "Ø" U00D8 # Danish O slashed
+
 # Emojis
 <Multi_key> <e> <colon> <parenright> <1> : "😀" U1F600 # GRINNING FACE
 <Multi_key> <e> <colon> <parenright> <2> : "😁" U1F601 # GRINNING FACE WITH SMILING EYES
@@ -47,3 +50,7 @@ include "%L"
 <Multi_key> <e> <colon> <parenright> <D> : "😈" U1F608 # SMILING FACE WITH HORNS
 <Multi_key> <e> <colon> <parenright> <W> : "😉" U1F609 # WINKING FACE
 <Multi_key> <e> <colon> <parenright> <F> : "😋" U1F60B # FACE SAVOURING DELICIOUS FOOD
+
+# Flags
+<Multi_key> <f> <a> <e> : "🇦🇪" U+1F1E6 U+1F1EA # FLAG: UNITED ARAB EMIRATES
+<Multi_key> <f> <r> : "🏳️‍🌈" U+1F3F3 U+FE0F U+200D U+1F308 # RAINBOW
