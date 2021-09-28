@@ -76,6 +76,9 @@ nmap <C-t> :bp <BAR> bd #<CR>
 " Show all open buffers and their status
 nmap <leader>bl :ls<CR>
 
+" Basic mapping for cyrillic keyboard layout in normal mode
+set langmap=рh,оj,лk,дl,шi,зp,щo,фa,вd,чx,ВD,ИB,цw,уe,иb,кr,КR
+
 " Setting color scheme
 syntax enable
 set t_8f=[38;2;%lu;%lu;%lum

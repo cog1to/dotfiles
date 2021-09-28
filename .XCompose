@@ -33,6 +33,14 @@ include "%L"
 <Multi_key> <g> <P> : "ψ" U03C8 # GREEK PSI SMALL
 <Multi_key> <g> <O> : "ω" U03C9 # GREEK OMEGA SMALL
 
+# Old cyrillic
+<Multi_key> <c> <y> : "ѣ" U0463 # CYRILLIC YAT
+<Multi_key> <c> <Y> : "ѣ" U0462 # CYRILLIC CAPITAL YAT
+<Multi_key> <Cyrillic_ie> : "ѣ" U0463 # CYRILLIC YAT
+<Multi_key> <Cyrillic_IE> : "ѣ" U0462 # CYRILLIC CAPITAL YAT
+<Multi_key> <Cyrillic_i> : "i" U0069 # CYRILLIC I
+<Multi_key> <Cyrillic_I> : "I" U0049 # CYRILLIC CAPITAL I
+
 # O/
 <Multi_key> <o> </> : "Ø" U00D8 # Danish O slashed
 
