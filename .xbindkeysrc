@@ -34,9 +34,10 @@
     XF86AudioPlay
 
 # Launch terminal
-"$TERMINAL"
-    Alt+Return
+"$TERMINAL -e tmux"
+    Mod4+Return
 
 # Launch rofi
-"rofi -show run -theme aint -lines 3"
-    Alt+F2
+"rofi -theme theme -show run -lines 3"
+    Mod4+r
+
