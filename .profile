@@ -19,6 +19,9 @@ export XDG_CONFIG_HOME=~/.config
 # of handling Java versions and vendors. Instead, please use script `archlinux-java`
 export PATH=${PATH}:/usr/lib/jvm/default/bin
 
+# Library search paths
+export LD_LIBRARY_PATH=/usr/lib:/usr/local/lib
+
 # NPM Packages path
 export NPM_PACKAGES="${HOME}/.npm-packages"
 export PATH=$NPM_PACKAGES/bin:$PATH
@@ -34,7 +37,7 @@ export JAVA7_HOME=/usr/lib/jvm/java-7-openjdk
 export PATH=/opt/android-studio/bin:$PATH
 
 # LaTeX
-export PATH=$PATH:~/utils/texlive/bin/x86_64-linux/
+export PATH=$PATH:~/utils/texlive-2021/bin/x86_64-linux/
 
 # Quick emulator launchers
 alias emuc='emulator -avd Compact_API_29 1>/dev/null 2>/dev/null &'
@@ -51,6 +54,13 @@ alias exthd-ntfs='sudo mount -t ntfs -o force,rw,umask=000,gid=storage /dev/sdb1
 # NVM config.
 [ -f /usr/share/nvm/init-nvm.sh ] && source /usr/share/nvm/init-nvm.sh
 
+# GOPATH
+export GOPATH=~/.local/go
+
+# Path to Odin installation. Requires to have base packages be next to the
+# executable.
+export PATH=$PATH:~/utils/src/Odin
+
 # MPD daemon start (if no other user instance exists)
 [ ! -s ~/.config/mpd/pid ] && mpd
 
@@ -59,3 +69,5 @@ export LS_COLORS="di=1;38;5;69:ex=38;5;208:ow=1;34;47"
 # Color `ls` output by default.
 alias ls='ls --color=auto'
 
+# Rust environment.
+. "$HOME/.cargo/env"
