@@ -20,6 +20,9 @@ Plug 'whatyouhide/vim-gotham'
 " Gruvbox
 Plug 'morhetz/gruvbox'
 
+" Odin syntax
+Plug 'Tetralux/odin.vim'
+
 call plug#end()
 
 " Tabulation.
@@ -29,6 +32,8 @@ set tabstop=2 softtabstop=0 expandtab shiftwidth=2
 autocmd Filetype html setlocal ts=2 sw=2 expandtab
 autocmd Filetype js setlocal ts=2 sw=2 expandtab
 autocmd Filetype c setlocal ts=2 sw=2 expandtab
+autocmd Filetype py setlocal ts=2 sw=2 expandtab
+autocmd Filetype odin setlocal ts=2 sw=2 noexpandtab
 
 " Mail formatting - disable auto-wrap
 autocmd Filetype mail setlocal tw=0
@@ -93,6 +98,7 @@ let &t_ut=''
 " Opening URLs.
 nmap <leader><space> yiW: !xdg-open <c-r>" &<cr>
 
+" Commenting blocks of code.
 nmap <leader>c :set opfunc=CommentOut<CR>g@
 nmap <C-\> :call CommentLine()<CR>
 
@@ -120,3 +126,7 @@ function! CommentLine()
   exe "normal" "^i// "
   call cursor(row + 1, column)
 endfunction
+
+" Macros
+
+let @q="r\"f\'r\""
