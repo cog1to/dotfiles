@@ -1,0 +1,7 @@
+#!/bin/bash
+
+for a in ./*.m4a; do
+  # give output correct extension
+  OUTF="${a[@]/%m4a/mp3}"
+  ffmpeg -i "$a" -b:a 320000 "$OUTF"
+done

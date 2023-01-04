@@ -1,0 +1,5 @@
+#!/bin/sh
+
+bluetoothctl power off
+sleep 3
+systemctl stop bluetooth

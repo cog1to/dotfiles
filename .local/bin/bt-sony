@@ -1,0 +1,7 @@
+#!/bin/sh
+
+systemctl start bluetooth
+sleep 3
+bluetoothctl power on
+sleep 4
+bluetoothctl connect 38:18:4C:95:FC:80
