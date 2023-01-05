@@ -46,7 +46,7 @@ git_branch() {
   git rev-parse --git-dir &> /dev/null
 
   local command=${COMP_WORDS[1]}
-  if [[ ${command} == "checkout" || ${command} == "branch" ]]; then
+  if [[ ${command} == "checkout" || ${command} == "branch" || ${command} == "merge" ]]; then
     # `sed` deletes leading symbols from `git branch` output
     # so "* current_branch" becomes "current_branch".
     local branches=`git branch --no-color | sed -e 's/[\* ] //'`
