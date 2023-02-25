@@ -7,7 +7,7 @@
 BOLD_RED="\[\033[01;31m\]"
 BOLD_GREEN="\[\033[01;32m\]"
 BOLD_YELLOW="\[\033[01;33m\]"
-BOLD_AMBER="\[\033[38;5;208m\]"
+AMBER="\[\033[38;5;208m\]"
 RED="\[\033[0;31m\]"
 GREEN="\[\033[0;32m\]"
 CLEAR="\[\033[00m\]"
@@ -23,6 +23,7 @@ git_prompt() {
 
   local git_status="$(git status 2> /dev/null)"
   local branch_pattern="^On branch ([^${IFS}]*)"
+  local detached_pattern="^HEAD detached at ([^${IFS}]*)"
 
   # Dirty state.
   if [[ ${git_status} =~ "nothing added to commit but untracked files present" ]]; then
@@ -36,6 +37,12 @@ git_prompt() {
     local branch=${BASH_REMATCH[1]}
     echo " ${CLEAR}(${GREEN}${branch}${state}${CLEAR})"
   fi
+
+  # Detached head.
+  if [[ ${git_status} =~ ${detached_pattern} ]]; then
+    local branch=${BASH_REMATCH[1]}
+    echo " ${CLEAR}(${AMBER}${branch}${state}${CLEAR})"
+  fi
 }
 
 # Git branch completion.
@@ -46,7 +53,7 @@ git_branch() {
   git rev-parse --git-dir &> /dev/null
 
   local command=${COMP_WORDS[1]}
-  if [[ ${command} == "checkout" || ${command} == "branch" || ${command} == "merge" ]]; then
+  if [[ ${command} == "checkout" || ${command} == "branch" || ${command} == "merge" || ${command} == "log" ]]; then
     # `sed` deletes leading symbols from `git branch` output
     # so "* current_branch" becomes "current_branch".
     local branches=`git branch --no-color | sed -e 's/[\* ] //'`
@@ -80,3 +87,4 @@ export VISUAL=vim
 
 # Profile variables and data.
 source ~/.profile
+. "$HOME/.cargo/env"
