@@ -1,7 +1,3 @@
-" Line numbering.
-set number
-set numberwidth=4
-
 " Plugins.
 call plug#begin('~/.vim/plugged')
 
@@ -10,9 +6,6 @@ Plug 'vim-airline/vim-airline'
 
 " Oceanic-Next color scheme.
 Plug 'mhartington/oceanic-next'
-
-" File browser side window.
-Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 
 " Another color-scheme.
 Plug 'whatyouhide/vim-gotham'
@@ -25,6 +18,10 @@ Plug 'Tetralux/odin.vim'
 
 call plug#end()
 
+" Line numbering.
+set number
+set numberwidth=4
+
 " Tabulation.
 set tabstop=2 softtabstop=0 expandtab shiftwidth=2
 
@@ -34,6 +31,7 @@ autocmd Filetype js setlocal ts=2 sw=2 expandtab
 autocmd Filetype c setlocal ts=2 sw=2 expandtab
 autocmd Filetype py setlocal ts=2 sw=2 expandtab
 autocmd Filetype odin setlocal ts=2 sw=2 noexpandtab
+autocmd Filetype go setlocal ts=2 sw=2 noexpandtab
 
 " Mail formatting - disable auto-wrap
 autocmd Filetype mail setlocal tw=0
@@ -81,6 +79,12 @@ nmap <C-t> :bp <BAR> bd #<CR>
 " Show all open buffers and their status
 nmap <leader>bl :ls<CR>
 
+" Trying out new mapping for buffer navigation
+set <m-h>=h " Fix for st
+set <m-l>=l " Fix for st
+nmap <m-h> :bn<CR>
+nmap <m-l> :bp<CR>
+
 " Basic mapping for cyrillic keyboard layout in normal mode
 set langmap=рh,оj,лk,дl,шi,зp,щo,фa,вd,чx,ВD,ИB,цw,уe,иb,кr,КR
 
@@ -98,8 +102,9 @@ let &t_ut=''
 " Opening URLs.
 nmap <leader><space> yiW: !xdg-open <c-r>" &<cr>
 
-" Commenting blocks of code.
-nmap <leader>c :set opfunc=CommentOut<CR>g@
+" Comment out mode: type this and then a motion, like 10j
+nmap <leader>q :set opfunc=CommentOut<CR>g@
+" Comment out current line.
 nmap <C-\> :call CommentLine()<CR>
 
 function! Min(a, b)

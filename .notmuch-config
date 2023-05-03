@@ -30,7 +30,7 @@ path=/home/aint/mail
 #
 [user]
 name=Alexander Rogachev
-primary_email=sorryforbadname@gmail.com
+primary_email=**email**
 
 # Configuration for "notmuch new"
 #
