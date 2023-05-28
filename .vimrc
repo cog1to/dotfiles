@@ -82,8 +82,8 @@ nmap <leader>bl :ls<CR>
 " Trying out new mapping for buffer navigation
 set <m-h>=h " Fix for st
 set <m-l>=l " Fix for st
-nmap <m-h> :bn<CR>
-nmap <m-l> :bp<CR>
+nmap <m-h> :bp<CR>
+nmap <m-l> :bn<CR>
 
 " Basic mapping for cyrillic keyboard layout in normal mode
 set langmap=рh,оj,лk,дl,шi,зp,щo,фa,вd,чx,ВD,ИB,цw,уe,иb,кr,КR
