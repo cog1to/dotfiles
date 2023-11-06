@@ -16,6 +16,9 @@ Plug 'morhetz/gruvbox'
 " Odin syntax
 Plug 'Tetralux/odin.vim'
 
+" CtrlP
+Plug 'ctrlpvim/ctrlp.vim'
+
 call plug#end()
 
 " Line numbering.
@@ -28,7 +31,8 @@ set tabstop=2 softtabstop=0 expandtab shiftwidth=2
 " Specific tab sizes
 autocmd Filetype html setlocal ts=2 sw=2 expandtab
 autocmd Filetype js setlocal ts=2 sw=2 expandtab
-autocmd Filetype c setlocal ts=2 sw=2 expandtab
+autocmd Filetype c setlocal ts=2 sw=2 noexpandtab
+autocmd Filetype cpp setlocal ts=2 sw=2 noexpandtab
 autocmd Filetype py setlocal ts=2 sw=2 expandtab
 autocmd Filetype odin setlocal ts=2 sw=2 noexpandtab
 autocmd Filetype go setlocal ts=2 sw=2 noexpandtab
@@ -80,10 +84,10 @@ nmap <C-t> :bp <BAR> bd #<CR>
 nmap <leader>bl :ls<CR>
 
 " Trying out new mapping for buffer navigation
-set <m-h>=h " Fix for st
-set <m-l>=l " Fix for st
-nmap <m-h> :bp<CR>
-nmap <m-l> :bn<CR>
+" set <m-h>=h " Fix for st
+" set <m-l>=l " Fix for st
+" nmap <m-h> :bp<CR>
+" nmap <m-l> :bn<CR>
 
 " Basic mapping for cyrillic keyboard layout in normal mode
 set langmap=рh,оj,лk,дl,шi,зp,щo,фa,вd,чx,ВD,ИB,цw,уe,иb,кr,КR
@@ -135,3 +139,8 @@ endfunction
 " Macros
 
 let @q="r\"f\'r\""
+
+" CtrlP
+
+let g:ctrlp_custom_ignore = 'node_modules'
+nnoremap <leader>. :CtrlPTag<cr>

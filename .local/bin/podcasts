@@ -1,0 +1,247 @@
+#!/usr/bin/env python
+
+import json
+import os
+import requests
+import sys
+import xml.etree.ElementTree as ET
+from urllib.parse import urlparse
+from email.utils import parsedate
+
+# Utils
+
+def error(text):
+    """Prints and error message and terminates the application"""
+    print(text)
+    quit()
+
+def printSkip(episode):
+    """Prints formatted 'Skipping...' message for an episode"""
+    title = episode.title
+    if len(title) >= 53:
+        title = title[:50] + "..."
+    print("  Episode '{}' exists, skipping".format(title))
+
+def printDownload(episode):
+    """Prints formatted 'Downloading...' message for an episode"""
+    title = episode.title
+    if len(title) >= 53:
+        title = title[:50] + "..."
+    print(
+        "  Downloading '{}'... ".format(title),
+        end = '',
+        flush = True
+    )
+
+# Feed handling
+
+class Episode:
+    """Episode info container"""
+    def __init__(
+        self,
+        title = "",
+        url = "",
+        size = 0,
+        date = None,
+        number = 0,
+        season = 0
+    ):
+        self.title = title
+        self.url = url
+        self.size = size
+        self.date = date
+        self.number = number
+        self.season = season
+
+class Feed:
+    """Feed info container"""
+    def __init__(self, json):
+        self.title = json["title"]
+        self.path = os.path.expanduser(os.path.expandvars(json["path"]))
+        self.url = json["url"]
+        self.format = json["file-format"] if "file-format" in json else None
+        self.maxEpisodes = json["max-episodes"] if "max-episodes" in json else None
+
+def prepareFeed(path):
+    """Creates a destination directory"""
+    if os.path.isdir(path):
+        return
+    os.makedirs(path)
+
+def fetchFeed(path, url):
+    """Downloads a feed from given URL and saves is to the given path"""
+    if not os.path.isdir(path):
+        error("Feed path doesn't exist")
+    destPath = path + "/feed.xml"
+    return downloadFile(url, destPath)
+
+def downloadFile(url, destPath):
+    """Downloads a file from given URL and saves is to the given path"""
+    # Pretend that we're not a robot.
+    headers = {"User-Agent": "curl/8.2.1"}
+    # Download file.
+    try:
+        req = requests.get(url, headers = headers, allow_redirects = True)
+        destFile = open(destPath, "wb")
+        destFile.write(req.content)
+        return True
+    except:
+        if destFile != None:
+            destFile.close()
+            os.remove(destPath)
+        return False
+
+def getEpisodes(feedPath, count):
+    """Parses RSS feed and returns `count` number of most recent episodes"""
+    feedTree = ET.parse(feedPath)
+    rss = feedTree.getroot()
+    if rss.tag != "rss":
+        error(
+            "Bad feed format: expecting <rss> as root element, got {}".format(
+                root.tag
+            )
+        )
+    channel = rss.find("channel")
+    # Parse items
+    items = []
+    for child in channel:
+        if child.tag != "item":
+            continue
+        item = Episode()
+        for field in child:
+            if field.tag == "title":
+                item.title = field.text
+            if field.tag == "enclosure":
+                item.url = field.get("url")
+                item.size = int(field.get("length"))
+            if field.tag == "pubDate":
+                item.date = parsedate(field.text)
+            if field.tag == "{http://www.itunes.com/dtds/podcast-1.0.dtd}episode":
+                item.number = int(field.text)
+            if field.tag == "{http://www.itunes.com/dtds/podcast-1.0.dtd}season":
+                item.season = int(field.text)
+        items.append(item)
+        if len(items) == count:
+            break
+    return items
+
+def formatEpisode(episode, fileFormat):
+    """Produces file name from episode data"""
+    # Use default file format.
+    if fileFormat == None:
+        fileFormat = "{pub} - {title}.mp3"
+    fileName = fileFormat
+    # Replace placeholders with data
+    if "{pub}" in fileFormat:
+        pubDate = "{}-{:02}-{:02}".format(
+            episode.date[0],
+            episode.date[1],
+            episode.date[2]
+        )
+        fileName = fileName.replace("{pub}", pubDate)
+    if "{title}" in fileFormat:
+        sanitized = episode.title.replace("/", "_")
+        sanitized = sanitized.replace("\\", "_")
+        sanitized = sanitized.replace(":", "_")
+        sanitized = sanitized.replace("&", "_")
+        sanitized = sanitized.replace("%", "_")
+        sanitized = sanitized.replace("$", "_")
+        sanitized = sanitized.replace("@", "_")
+        fileName = fileName.replace("{title}", sanitized)
+    if "{episode}" in fileFormat:
+        fileName = fileName.replace(
+            "{episode}",
+            "{:04}".format(episode.number)
+        )
+    if "{season}" in fileFormat:
+        fileName = fileName.replace(
+            "{season}",
+            "{:02}".format(episode.season)
+        )
+    if "{file}" in fileFormat:
+        parsedUrl = urlparse(episode.url)
+        file = parsedUrl.path.rsplit("/", 1)[-1]
+        fileName = fileName.replace("{file}", file)
+    return fileName
+
+def downloadEpisode(basePath, episode, fileFormat):
+    """Checks if episode was already synced and downloads it if necessary"""
+    directory = basePath
+    if not os.path.isdir(directory):
+        error("Target folder '{}' doesn't exist", directory)
+    # Get destination path
+    parsedUrl = urlparse(episode.url)
+    basename = formatEpisode(episode, fileFormat)
+    destPath = "{}/{}".format(directory, basename)
+    # Check if file exists and has the expected size
+    if os.path.exists(destPath):
+        if episode.size == 0 or os.path.getsize(destPath) == episode.size:
+            printSkip(episode)
+            return
+    # (re)Download file
+    printDownload(episode)
+    result = downloadFile(episode.url, destPath)
+    print("Done" if result == True else "Failed")
+
+# Config handling
+
+class Config:
+    """Config data holder"""
+    def __init__(self, json):
+        self.maxEpisodes = int(json["max-episodes"])
+        # Parse feeds
+        feeds = []
+        feedsJson = json["feeds"]
+        for feed in feedsJson:
+            feeds.append(Feed(feed))
+        self.feeds = feeds
+
+
+# Paths to check for config file.
+PATHS_TO_CONFIG = [
+    "./config",
+    "$XDG_CONFIG_HOME/podcasts/config",
+    "$HOME/.podcasts"
+]
+
+def readConfig():
+    """Reads and parses a config file"""
+    path = findConfig(PATHS_TO_CONFIG)
+    # Read file
+    configFile = open(path)
+    configJson = json.load(configFile)
+    configFile.close()
+    # Parse and return
+    return Config(configJson)
+
+def findConfig(paths):
+    """Tries to find and read the config file"""
+    # Check CLI argument first.
+    if len(sys.argv) > 1 and os.path.exists(sys.argv[1]):
+        return sys.argv[1]
+    # Check default locations.
+    for path in paths:
+        extended = os.path.expanduser(os.path.expandvars(path))
+        if os.path.exists(extended):
+            return extended
+    # No config found, terminate.
+    error("No valid config found")
+
+# Main
+
+config = readConfig()
+for feed in config.feeds:
+    print("Fetching feed '{}'... ".format(feed.title), end = '', flush = True)
+    prepareFeed(feed.path)
+    fetched = fetchFeed(feed.path, feed.url)
+    if fetched == True:
+        print("Done")
+        episodes = getEpisodes(
+            feed.path + "/feed.xml",
+            feed.maxEpisodes if feed.maxEpisodes != None else config.maxEpisodes
+        )
+        for ep in episodes:
+            downloadEpisode(feed.path, ep, feed.format)
+    else:
+        print("Failed, skipping")
+
