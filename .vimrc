@@ -26,7 +26,7 @@ set number
 set numberwidth=4
 
 " Tabulation.
-set tabstop=2 softtabstop=0 expandtab shiftwidth=2
+set tabstop=2 softtabstop=0 noexpandtab shiftwidth=2
 
 " Specific tab sizes
 autocmd Filetype html setlocal ts=2 sw=2 expandtab
