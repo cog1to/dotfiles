@@ -25,6 +25,9 @@ call plug#end()
 set number
 set numberwidth=4
 
+" 80 Columns delimeter
+set colorcolumn=81
+
 " Tabulation.
 set tabstop=2 softtabstop=0 noexpandtab shiftwidth=2
 
@@ -36,6 +39,13 @@ autocmd Filetype cpp setlocal ts=2 sw=2 noexpandtab
 autocmd Filetype py setlocal ts=2 sw=2 expandtab
 autocmd Filetype odin setlocal ts=2 sw=2 noexpandtab
 autocmd Filetype go setlocal ts=2 sw=2 noexpandtab
+autocmd Filetype zig setlocal ts=2 sw=2 noexpandtab
+
+if has('persistent_undo')
+	set undodir=$HOME/.vim/undo
+	set undofile
+endif
+
 
 " Mail formatting - disable auto-wrap
 autocmd Filetype mail setlocal tw=0

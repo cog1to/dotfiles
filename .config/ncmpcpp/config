@@ -1,7 +1,6 @@
 mpd_music_dir = "~/audio/muzik"
-visualizer_fifo_path = "~/.config/mpd/mpd.fifo"
+visualizer_data_source = "~/.config/mpd/mpd.fifo"
 visualizer_output_name = "FIFO"
-visualizer_sync_interval = "30" 
 visualizer_in_stereo = "yes"
 visualizer_type = "spectrum"
 visualizer_look = "+|"

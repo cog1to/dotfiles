@@ -1,8 +1,16 @@
+! Xft tweaks
 Xft.dpi: 120
-Xft.antialias:	true
-Xft.rgba:	rgb
-Xft.hinting:	true
-Xft.hintstyle:	hintslight
-XTerm.vt100.faceName: Liberation Mono:size=10:antialias=false
+Xft.antialias: true
+Xft.rgba: rgb
+Xft.hinting: true
+Xft.hintstyle: hintslight
+
+! Xterm font
+XTerm.vt100.faceName: Meslo LG S for Powerline:size=10:antialias=false
 XTerm.vt100.font: 7x13
 
+! Color customization
+#define color_bg #2f343f
+#define color_fg #bcb89c
+XTerm*background: color_bg
+XTerm*foreground: color_fg
