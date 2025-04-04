@@ -17,27 +17,26 @@
 #xfce-mcs-manager &
 #(sleep 2 && xcompmgr -c -t-4 -l-4 -r4.0 -o.4) &
 
-# Disable power saving for the monitor. It messes up gaming.
-xset s off
-xset -dpms
+# Warm light
+redshift -l 56.96:40.98 >/dev/null &
 # D-Bus daemon
-/usr/lib/notification-daemon-1.0/notification-daemon &
+/usr/lib/notification-daemon-1.0/notification-daemon >/dev/null &
 # Wallpaper
 nitrogen --restore &
 # Keyboinds for audio and stuff
-xbindkeys &
+xbindkeys
 # Twitch notifier
-stream-notifier cog1to 3o7htq2zv0812zd851wb1vnpuzeyp2
+stream-notifier cog1to 5k3qvw2b9539jd2w8352pqjvirtrt0 >/dev/null
 # Window compositor
-(sleep 2 && picom -b --config ~/.config/picom/picom.conf) &
+picom -b --config ~/.config/picom/picom.conf &
 # System info overlay
-(sleep 3 && conky) &
+conky &
 # Pulse-audio tray icon
-(sleep 4 && pasystray) &
+pasystray >/dev/null &
 # VPN Tray icon
-(sleep 5 && expressvpn-tray) &
-# Warm light
-(sleep 6 && redshift) &
+expressvpn-tray >/dev/null &
+# Disable power saving for the monitor. It messes up gaming.
+xset s off
+xset -dpms
 # GPU power level
 # (sleep 5 && sudo /usr/bin/amdgpu-powerlevel-high) &
-

@@ -1,0 +1,57 @@
+#!/bin/bash
+
+# Media controls for browsers via MPRIS interface over DBus.
+#
+# You can read about freedesktop's MPRIS interface here:
+# https://www.freedesktop.org/wiki/Specifications/mpris-spec/
+#
+# You can read about using dbus-tools here:
+#	https://www.freedesktop.org/wiki/Software/DbusTools/ 
+#
+# And specifically for dbus-send:
+# https://dbus.freedesktop.org/doc/dbus-send.1.html
+#
+# The script uses org.freedesktop.DBus as a registry to retrieve available
+# dbus destinations and get the first one that supports the media interface.
+# Tweak the grep argument to filter the results to get to your specific
+# browser, if you have more than one interface listed.
+
+# Get first browser supporting media controls.
+BROWSER=$(dbus-send --session --print-reply --dest=org.freedesktop.DBus \
+	/org/freedesktop/DBus org.freedesktop.DBus.ListNames \
+	| grep 'org.mpris.MediaPlayer2' \
+	| awk '{gsub(/"/, "", $2); print $2}')
+echo "sending to $BROWSER"
+
+# Check if we've detected the browser
+if [ "$BROWSER" == "" ]; then
+	exit
+fi;
+
+case "$1" in
+	"play")
+		dbus-send --print-reply --dest="$BROWSER" \
+			/org/mpris/MediaPlayer2 \
+			org.mpris.MediaPlayer2.Player.Play ;;
+	"pause")
+		dbus-send --print-reply --dest="$BROWSER" \
+			/org/mpris/MediaPlayer2 \
+			org.mpris.MediaPlayer2.Player.Pause ;;
+	"stop")
+		dbus-send --print-reply --dest="$BROWSER" \
+			/org/mpris/MediaPlayer2 \
+			org.mpris.MediaPlayer2.Player.Stop ;;
+	"playpause")
+		dbus-send --print-reply --dest="$BROWSER" \
+			/org/mpris/MediaPlayer2 \
+			org.mpris.MediaPlayer2.Player.PlayPause ;;
+	"next")
+		dbus-send --print-reply --dest="$BROWSER" \
+			/org/mpris/MediaPlayer2 \
+			org.mpris.MediaPlayer2.Player.Next ;;
+	"prev")
+		dbus-send --print-reply --dest="$BROWSER" \
+			/org/mpris/MediaPlayer2 \
+			org.mpris.MediaPlayer2.Player.Previous ;;
+esac
+

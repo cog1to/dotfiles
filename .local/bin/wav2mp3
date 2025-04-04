@@ -1,0 +1,16 @@
+#!/bin/bash
+
+for a in ./*.wav; do
+  # give output correct extension
+  OUTF="${a[@]/wav/mp3}"
+  ARTIST="$1"
+  ALBUM="$2"
+  TRACKNUMBER=`echo "$a" | awk -F ' - ' '{print $1}'`
+  TITLE=`echo "$a" | awk -F ' - ' '{print $2}'`
+
+  # stream flac into the lame encoder
+  lame -q 0 -b 320 --add-id3v2 --pad-id3v2 --ignore-tag-errors \
+    --ta "$ARTIST" --tt "$TITLE" --tl "$ALBUM" \
+    --tn "${TRACKNUMBER}" "$a" "$OUTF"
+done
+
